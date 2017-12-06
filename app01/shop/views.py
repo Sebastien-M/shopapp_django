@@ -13,7 +13,6 @@ def index(request):
 
 def new(request):
     pps = PricePlan.objects.all()
-    # prices = pps.getget_price
-    # product = PricePlan.products.though
+
     context = {'priceplans': pps}
     return render(request, 'shop/new.html', context)

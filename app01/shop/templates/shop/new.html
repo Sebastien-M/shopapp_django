@@ -11,6 +11,7 @@
                     <li>{{ product.description }}</li>
                     {{ product.get_price }}
                 {% endfor %}
+            <p>Price : {{ pp.get_price }}</p>
             </ul>
             <form action="" method="POST">
                 {% csrf_token %}

@@ -46,9 +46,12 @@ class PricePlan(models.Model):
 
     @property
     def get_price(self):
-        return self.products.price
+        total = 0
+        for product in self.products.all():
+            total += product.price
 
-
+        return total
+    
 @python_2_unicode_compatible
 class Contract(models.Model):
     price_plan = models.ForeignKey(PricePlan, on_delete=models.CASCADE, default='', related_name='price_plan', db_index=True)
