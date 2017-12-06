@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'app01.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'shop',
-        'USER': 'django',
-        'PASSWORD': 'djgo',
-        'HOST': '127.0.0.1',
+        'NAME': 'choco_sandbox_3',
+        'USER': 'itsf_dev',
+        'PASSWORD': 'QpWb>X=3xog7>Vd',
+        'HOST': 'mariadb-1.itsf.io',
         'PORT': '3306',
     }
 }

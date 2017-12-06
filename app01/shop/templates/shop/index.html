@@ -1,1 +1,12 @@
-<h1>Index</h1>
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'shop/index.css' %}" />
+
+<h2>Shop</h2>
+<section class="choice">
+    <a href="{% url 'shop:new' %}"><button class="new">New Customer</button></a>
+    <a href=""><button class="existing">Existing One</button></a>
+</section>
+
+
+{#<script src="{% static 'shop/index.js' %}"></script>#}

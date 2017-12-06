@@ -1,0 +1,24 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/index.css' %}"/>
+
+<div id="priceplan_all">
+    {% for pp in priceplans %}
+        <div id="priceplan_single">
+            <h3>{{ pp }}</h3>
+
+            <ul>
+                {% for product in pp.products.all %}
+                    <li>{{ product.description }}</li>
+                    {{ product.get_price }}
+                {% endfor %}
+            </ul>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="hidden">
+                <input type="submit" value="Choose price plan">
+            </form>
+        </div>
+    {% endfor %}
+
+</div>
+
