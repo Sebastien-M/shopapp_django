@@ -13,9 +13,9 @@
                 {% endfor %}
             <p>Price : {{ pp.get_price }}</p>
             </ul>
-            <form action="" method="POST">
+            <form action="{% url 'shop:index' %}" method="POST">
                 {% csrf_token %}
-                <input type="hidden">
+                <input type="hidden" value="{{ pp.id }}">
                 <input type="submit" value="Choose price plan">
             </form>
         </div>
