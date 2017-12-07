@@ -11,7 +11,7 @@ class Custommer(models.Model):
     # contract = models.ForeignKey(Contract, on_delete=models.CASCADE, related_name='owner')
 
     def __str__(self):
-        return self.lastname
+        return self.last_name
 
 
 @python_2_unicode_compatible
@@ -51,7 +51,7 @@ class PricePlan(models.Model):
             total += product.price
 
         return total
-    
+
 @python_2_unicode_compatible
 class Contract(models.Model):
     price_plan = models.ForeignKey(PricePlan, on_delete=models.CASCADE, default='', related_name='price_plan', db_index=True)

@@ -2,16 +2,10 @@
 <link rel="stylesheet" type="text/css" href="{% static 'shop/index.css' %}"/>
 
 <h2>Informations</h2>
-<form action="{% url 'shop:save' order.id %}" method="POST">
+
+<form action="{% url 'shop:save' order.id %}" method="post">
     {% csrf_token %}
-    <label for="fname">First Name</label>
-    <input type="text" name="first_name" id="fname">
-    <label for="lname">Last name</label>
-    <input type="text" name="last_name" id="lname">
-    <label for="age">Age</label>
-    <input type="number" min="10" name="age" id="age">
-    <label for="num">Phone number</label>
-    <input type="tel" name="number" id="num">
+    {{ form }}
     <input type="submit" value="Submit">
 </form>
 
@@ -23,5 +17,5 @@
             <li>{{ product.description }}</li>
         {% endfor %}
     </ul>
-    <p>Price : {{ pp.get_price }}</p>
+    <p>Price : {{ pp.get_price }} CHF</p>
 </section>

@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'shop/index.css' %}"/>
 
 <h2>Orders</h2>
+
 {% for order in orders %}
     <section class="order">
         <p>Last Name : {{ order.custommer_last_name }}</p>

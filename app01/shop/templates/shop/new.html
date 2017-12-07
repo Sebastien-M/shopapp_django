@@ -11,7 +11,7 @@
                     <li>{{ product.description }}</li>
                     {{ product.get_price }}
                 {% endfor %}
-            <p>Price : {{ pp.get_price }}</p>
+            <p>Price : {{ pp.get_price }} CHF</p>
             </ul>
             <form action="{% url 'shop:infos' pp.id  %}" method="POST">
                 {% csrf_token %}
