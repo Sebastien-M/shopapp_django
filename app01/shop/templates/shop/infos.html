@@ -1,0 +1,27 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/index.css' %}"/>
+
+<h2>Informations</h2>
+<form action="{% url 'shop:save' order.id %}" method="POST">
+    {% csrf_token %}
+    <label for="fname">First Name</label>
+    <input type="text" name="first_name" id="fname">
+    <label for="lname">Last name</label>
+    <input type="text" name="last_name" id="lname">
+    <label for="age">Age</label>
+    <input type="number" min="10" name="age" id="age">
+    <label for="num">Phone number</label>
+    <input type="tel" name="number" id="num">
+    <input type="submit" value="Submit">
+</form>
+
+<section class="price_plan">
+    <h3>Price plan chosen</h3>
+    <p>{{ pp.code }}</p>
+    <ul>
+        {% for product in pp.products.all %}
+            <li>{{ product.description }}</li>
+        {% endfor %}
+    </ul>
+    <p>Price : {{ pp.get_price }}</p>
+</section>

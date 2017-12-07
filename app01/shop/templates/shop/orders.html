@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/index.css' %}"/>
+
+<h2>Orders</h2>
+{% for order in orders %}
+    <section class="order">
+        <p>Last Name : {{ order.custommer_last_name }}</p>
+        <p>First Name : {{ order.custommer_first_name }}</p>
+        <p>Price Plan : {{ order.priceplan }}</p>
+        <ul>
+            {% for product in order.priceplan.products.all %}
+                <li>{{ product }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <br>
+{% endfor %}
+
+<p><a href="{% url 'shop:index' %}">Home</a></p>
