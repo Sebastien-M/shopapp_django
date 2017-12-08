@@ -1,6 +1,5 @@
 from django import forms
 from django.core.validators import RegexValidator
-from django.core import validators
 
 
 class InfoForm(forms.Form):
@@ -16,4 +15,3 @@ class InfoForm(forms.Form):
         if age < 18:
             raise forms.ValidationError('You must be over 18 years old')
         return age
-

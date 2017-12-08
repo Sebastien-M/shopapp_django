@@ -8,17 +8,15 @@ class Custommer(models.Model):
     last_name = models.CharField(max_length=50)
     age = models.IntegerField()
     number = models.CharField(max_length=20)
-    # contract = models.ForeignKey(Contract, on_delete=models.CASCADE, related_name='owner')
 
     def __str__(self):
-        return self.last_name
+        return '{} - {}'.format(self.first_name,self.last_name)
 
 
 @python_2_unicode_compatible
 class Period(models.Model):
     from_date = models.DateField(auto_now=False, auto_now_add=False)
     to_date = models.DateField(auto_now=False, auto_now_add=False)
-    # contract = models.ForeignKey(Contract, on_delete=models.CASCADE, related_name='period', default='')
 
     def __str__(self):
         return self.from_date
@@ -38,11 +36,9 @@ class Product(models.Model):
 class PricePlan(models.Model):
     code = models.CharField(default='', max_length=100)
     products = models.ManyToManyField(Product, related_name='products')
-    # contract = models.ForeignKey(Contract, on_delete=models.CASCADE, related_name='price_plan')
 
     def __str__(self):
         return self.code
-
 
     @property
     def get_price(self):
@@ -63,9 +59,9 @@ class Contract(models.Model):
 
 @python_2_unicode_compatible
 class Order(models.Model):
-    custommer_first_name = models.CharField(max_length=50);
-    custommer_last_name = models.CharField(max_length=50);
+    custommer_first_name = models.CharField(max_length=50)
+    custommer_last_name = models.CharField(max_length=50)
     priceplan = models.ForeignKey(PricePlan, on_delete=models.CASCADE, default='', related_name='pp')
 
     def __str__(self):
-        return self.custommer_first_name
+        return self.custommer_last_name
