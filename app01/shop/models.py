@@ -2,24 +2,24 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
 
-@python_2_unicode_compatible
-class Custommer(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    age = models.IntegerField()
-    number = models.CharField(max_length=20)
+# @python_2_unicode_compatible
+# class Custommer(models.Model):
+#     first_name = models.CharField(max_length=50)
+#     last_name = models.CharField(max_length=50)
+#     age = models.IntegerField()
+#     number = models.CharField(max_length=20)
+#
+#     def __str__(self):
+#         return '{} - {}'.format(self.first_name,self.last_name)
 
-    def __str__(self):
-        return '{} - {}'.format(self.first_name,self.last_name)
 
-
-@python_2_unicode_compatible
-class Period(models.Model):
-    from_date = models.DateField(auto_now=False, auto_now_add=False)
-    to_date = models.DateField(auto_now=False, auto_now_add=False)
-
-    def __str__(self):
-        return self.from_date
+# @python_2_unicode_compatible
+# class Period(models.Model):
+#     from_date = models.DateField(auto_now=False, auto_now_add=False)
+#     to_date = models.DateField(auto_now=False, auto_now_add=False)
+#
+#     def __str__(self):
+#         return self.from_date
 
 
 @python_2_unicode_compatible
@@ -48,14 +48,16 @@ class PricePlan(models.Model):
 
         return total
 
-@python_2_unicode_compatible
-class Contract(models.Model):
-    price_plan = models.ForeignKey(PricePlan, on_delete=models.CASCADE, default='', related_name='price_plan', db_index=True)
-    period = models.ForeignKey(Period, on_delete=models.CASCADE, default='', related_name='period')
-    owner = models.ForeignKey(Custommer, on_delete=models.CASCADE, default='', related_name='owner')
 
-    def __str__(self):
-        return self
+# @python_2_unicode_compatible
+# class Contract(models.Model):
+#     price_plan = models.ForeignKey(PricePlan, on_delete=models.CASCADE, default='', related_name='price_plan', db_index=True)
+#     period = models.ForeignKey(Period, on_delete=models.CASCADE, default='', related_name='period')
+#     owner = models.ForeignKey(Custommer, on_delete=models.CASCADE, default='', related_name='owner')
+#
+#     def __str__(self):
+#         return self
+
 
 @python_2_unicode_compatible
 class Order(models.Model):

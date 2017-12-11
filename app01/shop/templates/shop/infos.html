@@ -2,18 +2,20 @@
 <link rel="stylesheet" type="text/css" href="{% static 'shop/index.css' %}"/>
 
 <h2>Informations</h2>
-
-{#<form action="{% url 'shop:save' order.id %}" method="post">#}
-{#    {% csrf_token %}#}
-{#    {{ form }}#}
-{#    <input type="submit" value="Submit">#}
-{#</form>#}
-
+{#{% url 'shop:save' order.id %}#}
 <form action="" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Submit">
 </form>
+
+{# InfoView #}
+
+{#<form action="" method="post">#}
+{#    {% csrf_token %}#}
+{#    {{ form }}#}
+{#    <input type="submit" value="Submit" />#}
+{#</form>#}
 
 <section class="price_plan">
     <h3>Price plan chosen</h3>

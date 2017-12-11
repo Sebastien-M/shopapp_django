@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import Contract, Custommer, Product, Period, PricePlan, Order
+from .models import Product, PricePlan, Order
 from django import forms
 
 
@@ -23,9 +23,9 @@ class ProductAdmin(admin.ModelAdmin):
     form = ProductForm
 
 
-admin.site.register(Contract)
-admin.site.register(Custommer)
+# admin.site.register(Contract)
+# admin.site.register(Custommer)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Period)
+# admin.site.register(Period)
 admin.site.register(PricePlan)
 admin.site.register(Order)
