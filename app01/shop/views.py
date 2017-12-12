@@ -28,8 +28,13 @@ def info(request, priceplan_id):
                       custommer_last_name=form.cleaned_data['last_name'])
         order.save()
 
-        tosend = {}
-        tosend['priceplan'] = order.priceplan.id
+        tosend = dict()
+        tosend['priceplan_id'] = order.priceplan.id
+        tosend['priceplan_code'] = order.priceplan.code
+        # tosend['priceplan_products_code'] = json(productlisting(order.priceplan.products.code.all()))
+        # print (order.priceplan.products.all())
+        # print type(productlisting(order.priceplan.products.all()))
+        productlisting(order.priceplan.products.all())
         tosend['first_name'] = order.custommer_first_name
         tosend['last-name'] = order.custommer_last_name
         tosend['age'] = form.cleaned_data['age']
@@ -87,3 +92,14 @@ def send_to_queue(element):
     conn.connect()
     conn.send(body=str(element), destination='/queue/orders')
     conn.disconnect()
+
+
+def productlisting(priceplan):
+    products = []
+    product_code = []
+    product_price = []
+    product_description = []
+    for product in priceplan:
+        print(type(product))
+        products.append(product)
+    return products
