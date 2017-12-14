@@ -46,6 +46,16 @@ def info(request, priceplan_id):
     return render(request, 'shop/infos.html', context)
 
 
+def customerdetail(reauest, customer_id):
+    service = CustomerService()
+    contract = service.getcustonercontract(customer_id);
+    customer = service.getonecustomer(contract['customer'])
+    context = {'contract': contract, 'customer': customer}
+    return render(reauest, 'shop/customerdetail.html', context)
+
+
+
+
 # class InfoView(generic.UpdateView):
 #     template_name = 'shop/infos.html'
 #     form_class = InfoForm
@@ -77,16 +87,12 @@ def save(request, order_id):
 
 
 class OrderView(generic.ListView):
-    template_name = 'shop/orders.html'
+    template_name = 'shop/customers.html'
     context_object_name = 'customers'
 
     def get_queryset(self):
         service = CustomerService()
         customers = service.getallcustomers()
-        print customers
-        # json.loads(customers)
-
-        print(customers[0]['first_name'])
         return customers
 
 
