@@ -1,6 +1,28 @@
 {% extends "shop/base.html" %}
 {% block content %}
 
-    <p>{{ contract }}</p>
-    <p>{{ customer }}</p>
+    {#        <p>{{ contract }}</p>#}
+    {#        <p>{{ customer }}</p>#}
+    {#        <p>{{ priceplan }}</p>#}
+    {#        <p>{{ products }}</p>#}
+
+    <div class="customer">
+        <h2>Customer information</h2>
+        <p>First Name : {{ customer.first_name }}</p>
+        <p>Last Name : {{ customer.last_name }}</p>
+        <p>Age : {{ customer.age }}</p>
+        <p>Phone number : {{ customer.number }}</p>
+    </div>
+    <div class="subscription">
+        <h2>Subscription Information</h2>
+        <p>Price plan chosen: {{ priceplan.code }}</p>
+        <ul>
+            {% for product in products %}
+                <li>{{ product.description }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="price">
+        <h3>Total Price : {{ contract.price_plan_price }}CHF</h3>
+    </div>
 {% endblock %}

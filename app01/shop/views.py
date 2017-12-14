@@ -50,10 +50,13 @@ def customerdetail(reauest, customer_id):
     service = CustomerService()
     contract = service.getcustonercontract(customer_id);
     customer = service.getonecustomer(contract['customer'])
-    context = {'contract': contract, 'customer': customer}
+    priceplan = PricePlan.objects.get(id=contract['price_plan_id'])
+    products = priceplan.products.all()
+    context = {'contract': contract,
+               'customer': customer,
+               'priceplan': priceplan,
+               'products': products}
     return render(reauest, 'shop/customerdetail.html', context)
-
-
 
 
 # class InfoView(generic.UpdateView):
