@@ -1,23 +1,27 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/index.css' %}"/>
+{% extends "shop/base.html" %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/index.css' %}"/>
 
-<div id="priceplan_all">
-    {% for pp in priceplans %}
-        <div id="priceplan_single">
-            <h3>{{ pp }}</h3>
+    <div class="priceplans">
 
-            <ul>
-                {% for product in pp.products.all %}
-                    <li>{{ product.description }}</li>
-                    {{ product.get_price }}
-                {% endfor %}
-            <p>Price : {{ pp.get_price }} CHF</p>
-            </ul>
-            <form action="{% url 'shop:infos' pp.id  %}" method="POST">
-                {% csrf_token %}
-                <input type="submit" value="Choose price plan">
-            </form>
-        </div>
-    {% endfor %}
+        {% for pp in priceplans %}
+            <div id="priceplan_single" class="col-md-4">
+                <h3>{{ pp }}</h3>
 
-</div>
+                <ul>
+                    {% for product in pp.products.all %}
+                        <li>{{ product.description }}</li>
+                        {{ product.get_price }}
+                    {% endfor %}
+                    <p>Price : {{ pp.get_price }} CHF</p>
+                </ul>
+                <form action="{% url 'shop:infos' pp.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Choose price plan" class="btn btn-success">
+                </form>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

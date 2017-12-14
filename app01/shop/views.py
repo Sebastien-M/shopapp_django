@@ -6,6 +6,8 @@ from .forms import InfoForm
 from django.views import generic
 import stomp
 import json
+from .services import CustomerService
+
 
 class IndexView(generic.TemplateView):
     template_name = 'shop/index.html'
@@ -27,14 +29,10 @@ def info(request, priceplan_id):
                       custommer_first_name=form.cleaned_data['first_name'],
                       custommer_last_name=form.cleaned_data['last_name'])
         order.save()
-
         tosend = dict()
         tosend['priceplan_id'] = order.priceplan.id
         tosend['priceplan_code'] = order.priceplan.code
-        # tosend['priceplan_products_code'] = json(productlisting(order.priceplan.products.code.all()))
-        # print (order.priceplan.products.all())
-        # print type(productlisting(order.priceplan.products.all()))
-        productlisting(order.priceplan.products.all())
+        tosend['priceplan_price'] = order.priceplan.get_price
         tosend['first_name'] = order.custommer_first_name
         tosend['last-name'] = order.custommer_last_name
         tosend['age'] = form.cleaned_data['age']
@@ -80,10 +78,16 @@ def save(request, order_id):
 
 class OrderView(generic.ListView):
     template_name = 'shop/orders.html'
-    context_object_name = 'orders'
+    context_object_name = 'customers'
 
     def get_queryset(self):
-        return Order.objects.all()
+        service = CustomerService()
+        customers = service.getallcustomers()
+        print customers
+        # json.loads(customers)
+
+        print(customers[0]['first_name'])
+        return customers
 
 
 def send_to_queue(element):
@@ -96,10 +100,6 @@ def send_to_queue(element):
 
 def productlisting(priceplan):
     products = []
-    product_code = []
-    product_price = []
-    product_description = []
     for product in priceplan:
-        print(type(product))
-        products.append(product)
+        products.append([product.code, product.price, product.description])
     return products

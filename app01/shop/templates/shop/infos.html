@@ -1,31 +1,45 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/index.css' %}"/>
+{% extends "shop/base.html" %}
+{% block content %}
 
-<h2>Informations</h2>
-{#{% url 'shop:save' order.id %}#}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+    <h2>Informations</h2>
+    <form action="" method="post">
+        {% csrf_token %}
 
-{# InfoView #}
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{ form.first_name.label }}</label>
+            {{ form.first_name }}
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{ form.last_name.label }}</label>
+            {{ form.last_name }}
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{ form.age.label }}</label>
+            {{ form.age }}
+            <div class="invalid-feedback">
 
-{#<form action="" method="post">#}
-{#    {% csrf_token %}#}
-{#    {{ form }}#}
-{#    <input type="submit" value="Submit" />#}
-{#</form>#}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{ form.number.label }}</label>
+            {{ form.number }}
+        </div>
 
-<section class="price_plan">
-    <h3>Price plan chosen</h3>
-    <p>{{ pp.code }}</p>
-    <ul>
-        {% for product in pp.products.all %}
-            <li>{{ product.description }}</li>
-        {% endfor %}
-    </ul>
-    <p>Price : {{ pp.get_price }} CHF</p>
-</section>
+        <input type="submit" value="Submit" class="btn btn-primary">
+    <p>{{ form.age.errors }}</p>
+    </form>
 
-{{ object }}
+    <section class="price_plan">
+        <h3>Price plan chosen</h3>
+        <p>{{ pp.code }}</p>
+        <ul>
+            {% for product in pp.products.all %}
+                <li>{{ product.description }}</li>
+            {% endfor %}
+        </ul>
+        <p>Price : {{ pp.get_price }} CHF</p>
+    </section>
+
+    {{ object }}
+
+{% endblock %}

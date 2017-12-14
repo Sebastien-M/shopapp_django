@@ -1,27 +1,6 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-
-# @python_2_unicode_compatible
-# class Custommer(models.Model):
-#     first_name = models.CharField(max_length=50)
-#     last_name = models.CharField(max_length=50)
-#     age = models.IntegerField()
-#     number = models.CharField(max_length=20)
-#
-#     def __str__(self):
-#         return '{} - {}'.format(self.first_name,self.last_name)
-
-
-# @python_2_unicode_compatible
-# class Period(models.Model):
-#     from_date = models.DateField(auto_now=False, auto_now_add=False)
-#     to_date = models.DateField(auto_now=False, auto_now_add=False)
-#
-#     def __str__(self):
-#         return self.from_date
-
-
 @python_2_unicode_compatible
 class Product(models.Model):
     code = models.CharField(default='', max_length=100)

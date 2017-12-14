@@ -1,20 +1,27 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/index.css' %}"/>
+{% extends "shop/base.html" %}
+{% block content %}
 
-<h2>Orders</h2>
+<h2>Customers</h2>
 
-{% for order in orders %}
-    <section class="order">
-        <p>Last Name : {{ order.custommer_last_name }}</p>
-        <p>First Name : {{ order.custommer_first_name }}</p>
-        <p>Price Plan : {{ order.priceplan }}</p>
-        <ul>
-            {% for product in order.priceplan.products.all %}
-                <li>{{ product }}</li>
-            {% endfor %}
-        </ul>
-    </section>
-    <br>
-{% endfor %}
+<table class="table table-striped">
+        <thead>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Age</th>
+        <th>Number</th>
+        </thead>
+        <tbody>
+        {% for customer in customers %}
+            <tr>
+                <td><a href="">Last Name : {{ customer.last_name }}</a></td>
+                <td>First Name : {{ customer.first_name }}</td>
+                <td>Age : {{ customer.age }}</td>
+                <td>Number : {{ customer.number }}</td>
+            </tr>
 
-<p><a href="{% url 'shop:index' %}">Home</a></p>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+{% endblock %}
