@@ -12,7 +12,7 @@
         <th>Number</th>
         </thead>
         <tbody>
-        {% for customer in customers %}
+        {% for customer in customers.results %}
             <tr>
                 <td><a href="/shop/customers/id={{ customer.id }}">{{ customer.id }}</a></td>
                 <td>{{ customer.last_name }}</td>
